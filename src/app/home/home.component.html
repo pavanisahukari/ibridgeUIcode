@@ -1,0 +1,36 @@
+﻿<h1>Hi {{currentUser.firstName}}!</h1>
+<p>You're logged in with Angular 7!!</p>
+<h3>All registered users:</h3>
+<!-- <ul>
+    <li *ngFor="let user of users">
+        {{user.username}} ({{user.firstName}} {{user.lastName}})
+        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
+    </li>
+</ul> -->
+<table class="table">
+    <thead>
+      <tr>
+          <th>S.NO</th>
+        <th scope="col">username</th>
+        <th scope="col">firstName</th>
+        <th scope="col">lastName</th>
+        <th scope="col">Last Login</th>
+  
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users | paginate: { itemsPerPage: 2, currentPage: p }let i= index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{user.username}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.lastLogin | date:'short'}}</td>
+       
+  
+  
+      </tr>
+  
+    </tbody>
+  
+  </table>
+  <pagination-controls (pageChange)="next($event)"></pagination-controls>
